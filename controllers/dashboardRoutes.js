@@ -5,6 +5,7 @@ const withAuth = require('../utils/auth');
 router.get('/', withAuth, async (req, res) => {
     try {
        const userData = await User.findAll({
+        //FINISH THIS
        }) 
     } catch (err) {
         res.status(500).json(err);
