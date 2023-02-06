@@ -13,3 +13,5 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 module.exports = router;
+
+//dashboard needs get routes for all blog posts user created
