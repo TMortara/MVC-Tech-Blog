@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MVC Tech Blog</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/css/jass.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <div>
         <header>
+            <h1>Tech Blog</h1>
             <nav>
                 <a href="/homepage">Home</a>
                 <a href="/dashboard">Dashboard</a>
@@ -20,10 +22,9 @@
                 <button class="no-button" id="login">Login</button>
                 {{/if}}
             </nav>
-            <h1>Tech Blog</h1>
         </header>
         <main>
-            {{ body }}
+            {{{ body }}}
         </main>
         <footer>
 
