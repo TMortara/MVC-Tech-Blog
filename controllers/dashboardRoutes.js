@@ -1,12 +1,67 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
+//GET all posts from logged in user
 router.get('/', withAuth, async (req, res) => {
     try {
-       const userData = await User.findAll({
-        //FINISH THIS
-       }) 
+       const postData = await Post.findAll({
+        where: {user_id: req.session.user_id},
+        attributes: ['id', 'title', 'contents', 'date_created'],
+        order: [['date_created', 'DESC']],
+       });
+       
+       const posts = postData.map((trip) => 
+        trip.get({ plain: true })
+        );
+
+        res.render('dashboard', {posts, loggedIn: true});
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//GET one post
+router.get('/post/:id', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id);
+        const post = postData.get({ plain: true });
+
+        res.render('post', { post });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//GET post to edit
+router.get('/post/edit/:id', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.findOne({
+            where: {id: req.params.id},
+            attributes: ['id', 'title', 'contents', 'date_created'],
+        });
+
+        const post = postData.get({ plain: true });
+        res.render('edit-post', {post, loggedIn: true});
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/post/create', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.findAll({
+            where: {user_id: req.session.user_id},
+            attributes: ['id', 'title', 'contents', 'date_created'],
+        });
+
+        const post = postData.map((post) =>
+        trip.get({ plain: true })
+        );
+
+        res.render('create-post', {post, loggedIn: true});
+
     } catch (err) {
         res.status(500).json(err);
     }
