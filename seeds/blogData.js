@@ -1,4 +1,6 @@
-[
+const { Post } = require('../models');
+
+const postdata = [
     {
         "title": "Learing to Code",
         "contents": "Learning to code can be difficult, but stick with it and practice practice practice.  Things will begin to make sense after you have a moment to let it sink in.",
@@ -30,3 +32,7 @@
         "user_id": 4
     }
 ]
+
+const seedPosts = () => Post.bulkCreate(postdata);
+
+module.exports = seedPosts;
