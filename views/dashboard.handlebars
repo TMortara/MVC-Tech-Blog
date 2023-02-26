@@ -1,0 +1,11 @@
+<div>
+    <h2>My Posts</h2>
+    {{#if posts.length}}
+    <div>
+        {{#each posts as |post|}}
+        {{post}}
+    </div>
+    {{/each}}
+    {{else}}
+    <h3>You do not have any posts at this time.</h3>
+</div>

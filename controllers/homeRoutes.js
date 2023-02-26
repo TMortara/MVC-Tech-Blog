@@ -6,7 +6,7 @@ const withAuth = require('../utils/auth');
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
-      attributes: ['title', 'contents', 'date_created', 'user_id'],
+      attributes: ['id', 'title', 'contents', 'date_created', 'user_id'],
       include: [
         {
           model: User,
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
     res.render('homepage', {
       posts,
-      logged_in: req.session.logged_in
+      loggedIn: req.session.loggedIn
     });
   } catch (err) {
     res.status(500).json(err);
@@ -29,8 +29,9 @@ router.get("/", async (req, res) => {
 // GET one blog post
 router.get('/post/:id', async (req, res) => {
   try {
+    // console.log(req.params.id);
     const postData = await Post.findByPk(req.params.id, {
-      attributes: ['title', 'contents', 'date_created', 'user_id'],
+      attributes: ['id', 'title', 'contents', 'date_created', 'user_id'],
       include: [
         {
           model: User,
@@ -39,11 +40,11 @@ router.get('/post/:id', async (req, res) => {
       ],
     });
 
-    const posts = postData.map((post) => post.get({ plain: true }));
+    const post = postData.get({ plain: true });
 
-    res.render('homepage', {
-      posts,
-      logged_in: req.session.logged_in
+    res.render('post', {
+      post,
+      loggedIn: req.session.loggedIn
     });
   } catch (err) {
     res.status(500).json(err);
@@ -61,7 +62,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     res.render('dashboard', {
       posts,
-      logged_in: true,
+      loggedIn: req.session.loggedIn
     });
   } catch (err) {
     res.status(500).json(err);
@@ -69,11 +70,21 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.loggedIn) {
     res.redirect('/dashboard');
     return;
   }
   res.render('login');
+});
+
+// Signup route
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup');
 });
 
 module.exports = router;
