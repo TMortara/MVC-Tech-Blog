@@ -6,11 +6,11 @@ const withAuth = require('../utils/auth');
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
+      attributes: ['title', 'contents', 'date_created', 'user_id'],
       include: [
         {
-          model: Post,
-          attributes: ['title', 'contents', 'date_created', 'user_id'],
-          order: [['date_created']],
+          model: User,
+          attributes: ['username'],
         },
       ],
     });
@@ -26,14 +26,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET one blog post
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
+      attributes: ['title', 'contents', 'date_created', 'user_id'],
       include: [
         {
-          model: Post,
-          attributes: ['title', 'contents', 'date_created', 'user_id'],
-          order: [['date_created']],
+          model: User,
+          attributes: ['username'],
         },
       ],
     });
@@ -42,7 +43,7 @@ router.get('/post/:id', async (req, res) => {
 
     res.render('homepage', {
       posts,
-      //DO I NEED SESSION FLAG...SEE HOMEROUTES MINI PROJECT
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);

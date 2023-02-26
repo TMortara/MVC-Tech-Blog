@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Learing to Code",
+        "contents": "",
+        "date_created": "10/18/2022",
+        "user_id": 1
+    },
+    {
+        "title": "Mastering CSS",
+        "contents": "",
+        "date_created": "10/17/2022",
+        "user_id": 2
+    },
+    {
+        "title": "Gaining new ground in AI",
+        "contents": "",
+        "date_created": "07/07/2021",
+        "user_id": 3
+    },
+    {
+        "title": "Generating Handlebar templates",
+        "contents": "",
+        "date_created": "04/17/2020",
+        "user_id": 1
+    },
+    {
+        "title": "Clean Code",
+        "contents": "",
+        "date_created": "02/14/2023",
+        "user_id": 4
+    }
+]
