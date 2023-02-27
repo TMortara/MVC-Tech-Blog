@@ -6,7 +6,6 @@ const withAuth = require('../utils/auth');
 //GET all posts from logged in user
 router.get('/', withAuth, async (req, res) => {
     try {
-       console.log(req.session.user_id);
         const postData = await Post.findAll({
         where: { user_id: req.session.user_id },
         attributes: ['id', 'title', 'contents', 'date_created'],
