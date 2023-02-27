@@ -1,18 +1,26 @@
 const router = require('express').Router();
+const sequelize = require('../config/connection');
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 //GET all posts from logged in user
 router.get('/', withAuth, async (req, res) => {
     try {
-       const postData = await Post.findAll({
-        where: {user_id: req.session.user_id},
+       console.log(req.session.user_id);
+        const postData = await Post.findAll({
+        where: { user_id: req.session.user_id },
         attributes: ['id', 'title', 'contents', 'date_created'],
         order: [['date_created', 'DESC']],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
        });
        
-       const posts = postData.map((trip) => 
-        trip.get({ plain: true })
+       const posts = postData.map((post) => 
+        post.get({ plain: true })
         );
 
         res.render('dashboard', {posts, loggedIn: true});
@@ -29,6 +37,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
 
         res.render('post', { post });
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });

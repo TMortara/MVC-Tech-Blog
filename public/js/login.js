@@ -14,6 +14,7 @@ const loginFormHandler = async (event) => {
 
         if (resp.ok) {
             document.location.replace('/dashboard');
+
         } else {
             alert(resp.statusText);
         }

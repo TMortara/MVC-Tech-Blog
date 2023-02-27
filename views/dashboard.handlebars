@@ -3,9 +3,11 @@
     {{#if posts.length}}
     <div>
         {{#each posts as |post|}}
-        {{post}}
+       <p> {{post.title}} </p>
+        <p>{{post.contents}}</p>
     </div>
     {{/each}}
     {{else}}
     <h3>You do not have any posts at this time.</h3>
+    {{/if}}
 </div>
