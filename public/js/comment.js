@@ -1,5 +1,4 @@
-console.log("Js file linked")
-async function commentFormHandler(event) {
+const commentFormHandler = async (event) => {
     event.preventDefault();
 
     const contents = document.querySelector('textarea[name="comment-body"]').value.trim();
@@ -21,6 +20,9 @@ async function commentFormHandler(event) {
             alert(resp.statusText);
         }
     }
-}
+};
+
+
+
 console.log(document.querySelector(".comment-form"))
 document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);

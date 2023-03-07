@@ -32,7 +32,17 @@ router.post('/', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
     try {
+        const commentData = await Comment.destroy({
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id,
+            },
+        });
 
+        if (!commentData) {
+            res.status(404).json({ message: 'No post found with this ID'});
+            return;
+        }
     } catch (err) {
         console.log(err)
         res.status(500).json(err);
