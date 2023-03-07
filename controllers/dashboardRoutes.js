@@ -6,6 +6,8 @@ const withAuth = require('../utils/auth');
 //GET all posts from logged in user
 router.get('/', withAuth, async (req, res) => {
     try {
+        console.log("************************************")
+        console.log("DASHBOARD ROUTE HIT")
         const postData = await Post.findAll({
         where: { user_id: req.session.user_id },
         attributes: ['id', 'title', 'contents', 'date_created'],
@@ -21,9 +23,11 @@ router.get('/', withAuth, async (req, res) => {
        const posts = postData.map((post) => 
         post.get({ plain: true })
         );
+        console.log(posts)
 
         res.render('dashboard', {posts, loggedIn: true});
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 });

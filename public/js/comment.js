@@ -1,3 +1,4 @@
+console.log("Js file linked")
 async function commentFormHandler(event) {
     event.preventDefault();
 
@@ -21,5 +22,5 @@ async function commentFormHandler(event) {
         }
     }
 }
-
+console.log(document.querySelector(".comment-form"))
 document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);

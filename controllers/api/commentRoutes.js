@@ -14,14 +14,27 @@ router.get('/', withAuth, async (req, res) => {
 
 router.post('/', withAuth, async (req, res) => {
     try {
+        console.log("************************************")
+        console.log("ROUTE HIT TO ADD COMMENT")
+        console.log(req.body)
         const newComment = await Comment.create({
             contents: req.body.contents,
-            post_id:req.body.trip_id,
+            post_id:req.body.post_id,
             user_id: req.session.user_id,
         });
 
         res.status(200).json(newComment);
     } catch (err) {
+        console.log(err)
+        res.status(500).json(err);
+    }
+});
+
+router.delete('/:id', withAuth, async (req, res) => {
+    try {
+
+    } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 });
