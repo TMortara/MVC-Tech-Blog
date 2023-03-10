@@ -1,0 +1,15 @@
+<div>
+    <p>{{comment.contents}}</p>
+    <p>Created by: {{comment.user.username}} on {{format_date comment.date_created}}</p>
+</div>
+
+<div class="edit-comment">
+    <button id="edit-btn" class="edit-comment-btn" type="submit" data-id="{{comment.id}}">Edit Comment</button>
+</div>
+<div class="delete-comment">
+    <button id="delete-btn" class="delete-comment-btn" data-id="{{comment.id}}">Delete Comment</button>
+</div>
+
+{{#if loggedIn}}
+<script src="/js/editDeleteComment.js"></script>
+{{/if}}

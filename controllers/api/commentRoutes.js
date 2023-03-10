@@ -31,11 +31,13 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 router.delete('/:id', withAuth, async (req, res) => {
+    console.log('************************')
+    console.log('hit delete route')
     try {
         const commentData = await Comment.destroy({
             where: {
                 id: req.params.id,
-                user_id: req.session.user_id,
+                // user_id: req.session.user_id,
             },
         });
 
@@ -43,6 +45,8 @@ router.delete('/:id', withAuth, async (req, res) => {
             res.status(404).json({ message: 'No post found with this ID'});
             return;
         }
+            res.status(200).json(commentData);
+            
     } catch (err) {
         console.log(err)
         res.status(500).json(err);

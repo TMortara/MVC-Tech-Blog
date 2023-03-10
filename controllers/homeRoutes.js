@@ -38,21 +38,54 @@ router.get('/post/:id', async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        {model: Comment,
-        include: {
-          model: User
+        {
+          model: Comment,
+          include: {
+            model: User
         }}
       ],
     });
 
     const post = postData.get({ plain: true });
-    console.log(post.comments)
+    // console.log(post.comments)
     res.render('post', {
       post,
       loggedIn: req.session.loggedIn
     });
   } catch (err) {
     console.log(err)
+    res.status(500).json(err);
+  }
+});
+
+router.get('/comment/:id', async (req, res) => {
+  try {
+    const commentData = await Comment.findByPk(req.params.id, {
+      attributes: ['id', 'contents', 'date_created', 'post_id', 'user_id'],
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        // {
+        //   model: Comment,
+        //   include: {
+        //     model: User
+        // }}
+      ],
+    });
+    if (!commentData) {
+      res.status(404).json({ message: 'Cannot find comment.'});
+    }
+    const comment = commentData.get({ plain: true });
+    console.log(comment);
+    res.render('edit-delete-comment', {
+      comment,
+      loggedIn: req.session.loggedIn
+    });
+
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
