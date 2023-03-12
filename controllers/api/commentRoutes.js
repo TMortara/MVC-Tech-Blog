@@ -2,15 +2,43 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
-    try {
-       const commentData = await Comment.findAll({}) 
-    //    commentData => res.json(commentData);
-    //    commentData.get({ plain: true });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+// router.get('/', withAuth, async (req, res) => {
+//     try {
+//        const commentData = await Comment.findAll({}) 
+//     //    commentData => res.json(commentData);
+//     //    commentData.get({ plain: true });
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
+// router.get('/', function(req, res) {
+//     res.render('edit-delete-comment');
+//   });
+
+
+// router.get('/', withAuth, async (req, res) => {
+//     try {
+//        const commentData = await Comment.findAll({
+//         // attirbutes: ['id', 'contents', 'date_created', 'user_id', 'post_id'],
+//         // include: [
+//         //   {
+//         //     model: User,
+//         //   },
+//         // ],
+//        }); 
+  
+//     //    const comments = commentData.map((comment) => comment.get({ plain: true }));
+       
+//     //    res.render('edit-delete-comment', {
+//     //     comments,
+//     //     loggedIn: req.session.loggedIn
+//     //    });
+//        res.status(200).json(commentData);
+  
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+//   });
 
 router.post('/', withAuth, async (req, res) => {
     try {
@@ -46,7 +74,7 @@ router.delete('/:id', withAuth, async (req, res) => {
             return;
         }
             res.status(200).json(commentData);
-            
+
     } catch (err) {
         console.log(err)
         res.status(500).json(err);

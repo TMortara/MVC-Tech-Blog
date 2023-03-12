@@ -2,12 +2,14 @@
   <br>
   {{#each this}}
     <section id="comment-section" class="comment">
+      {{log comment.id}}
+      <a href="/comment/{{id}}">{{contents}}</a>
       <div class="meta">
         {{user.username}} -  {{format_date date_created}}
       </div>
-      <div class="text">
+      {{!-- <p class="text">
         {{contents}}
-      </div>
+      </p> --}}
     </section>
      {{!-- {{#if loggedIn}} --}}
      {{log contents}}
