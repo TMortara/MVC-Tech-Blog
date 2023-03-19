@@ -10,9 +10,13 @@ router.get("/", async (req, res) => {
       attributes: ['id', 'title', 'contents', 'date_created', 'user_id'],
       include: [
         {
-          model: User,
-          attributes: ['username'],
+          model: Comment,
+          include: { model: User, attributes: ['username'] }
         },
+        {
+          model: User,
+          attributes: ['username']
+        }
       ],
     });
 
@@ -59,8 +63,7 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-
-
+// GET single comment
 router.get('/comment/:id', async (req, res) => {
   try {
     const commentData = await Comment.findByPk(req.params.id, {
@@ -78,7 +81,35 @@ router.get('/comment/:id', async (req, res) => {
       ],
     });
     if (!commentData) {
-      res.status(404).json({ message: 'Cannot find comment.'});
+      res.status(404).json({ message: 'Cannot find comment' });
+    }
+    const comment = commentData.get({ plain: true });
+    console.log(comment);
+    res.render('comments', {
+      comment,
+      loggedIn: req.session.loggedIn
+    });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// Edit comment route
+router.get('/edit/:id', async (req, res) => {
+  try {
+    const commentData = await Comment.findByPk(req.params.id, {
+      attributes: ['id', 'contents', 'date_created', 'post_id', 'user_id'],
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+    if (!commentData) {
+      res.status(404).json({ message: 'Cannot find comment' });
     }
     const comment = commentData.get({ plain: true });
     console.log(comment);
@@ -110,6 +141,7 @@ router.get('/comment/:id', async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // });
+
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {

@@ -2,14 +2,31 @@
     <p>{{comment.contents}}</p>
     <p>Created by: {{comment.user.username}} on {{format_date comment.date_created}}</p>
 </div>
+    <div id="post-id" value="{{comment.post_id}}" hidden></div>
 
-<div class="edit-comment">
-    <button id="edit-btn" class="edit-comment-btn" type="submit" data-id="{{comment.id}}">Edit Comment</button>
-</div>
+
 <div class="delete-comment">
     <button id="delete-btn" class="delete-comment-btn" data-id="{{comment.id}}">Delete Comment</button>
 </div>
 
+<div class="edit-comment">
+  <h2>
+    Edit Comment
+  </h2>
+    <label for="comment">
+      Updated Comment:
+    </label>
+    <br />
+    <textarea id="updated_contents" name="contents" rows="4">
+      {{!-- {{comment.contents}} --}}
+    </textarea>
+  <div class="edit-comment">
+    <button id="edit-btn" class="edit-comment-btn" data-id="{{comment.id}}">Edit Comment</button>
+  </div>
+</div>
+
 {{#if loggedIn}}
-<script src="/js/editDeleteComment.js"></script>
+<script src="/js/deleteComment.js"></script>
+<script src="/js/editComment.js"></script>
+
 {{/if}}
