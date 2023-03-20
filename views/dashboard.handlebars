@@ -1,27 +1,29 @@
 <div>
-    <h2>My Posts</h2>
-    {{#if posts.length}}
-    <div>
-        {{#each posts as |post|}}
-       <p> {{post.title}} </p>
-        <p>{{post.contents}}</p>
-    </div>
+  <h2>My Posts</h2>
+  {{#if posts.length}}
+    {{#each posts as |post|}}
+      <div class="card w-75 mb-3">
+        <div class="card-body">
+          <h5><a href="/post/{{post.id}}">{{post.title}}</a></h5>
+          <p class="card-text">{{post.contents}}</p>
+        </div>
+      </div>
     {{/each}}
-    {{else}}
+  {{else}}
     <h3>You do not have any posts at this time.</h3>
-    {{/if}}
-     <form class="form post-form">
-      <div class="form-group">
-        <label for="title">Post Title:</label>
-        <input class="form-input" type="text" id="title" />
-      </div>
-      <div class="form-group">
-        <label for="contents">content:</label>
-        <input class="form-input" type="textarea" id="contents" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Add Post</button>
-      </div>
-    </form>
-<script src="/js/dashboardAddPost.js"></script>
+  {{/if}}
+  <form class="form post-form">
+    <div class="form-group">
+      <label for="title">Post Title:</label>
+      <input class="form-input" type="text" id="title" />
+    </div>
+    <div class="form-group">
+      <label for="contents">Post Content:</label>
+      <input class="form-input" type="textarea" id="contents" />
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Add Post</button>
+    </div>
+  </form>
+  <script src="/js/dashboardAddPost.js"></script>
 </div>

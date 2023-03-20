@@ -3,7 +3,7 @@
   {{#each this}}
     <section id="comment-section" class="comment">
       {{log comment.id}}
-      <a href="/edit/{{id}}">{{contents}}</a>
+      <a href="/edit-comment/{{id}}">{{contents}}</a>
       <div class="meta">
         {{user.username}} -  {{format_date date_created}}
       </div>

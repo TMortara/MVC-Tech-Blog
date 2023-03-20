@@ -97,7 +97,7 @@ router.get('/comment/:id', async (req, res) => {
 });
 
 // Edit comment route
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit-comment/:id', async (req, res) => {
   try {
     const commentData = await Comment.findByPk(req.params.id, {
       attributes: ['id', 'contents', 'date_created', 'post_id', 'user_id'],
