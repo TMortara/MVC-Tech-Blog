@@ -45,21 +45,40 @@ router.get('/post/:id', withAuth, async (req, res) => {
     }
 });
 
-//GET post to edit
-router.get('/post/edit/:id', withAuth, async (req, res) => {
-    try {
-        const postData = await Post.findOne({
-            where: {id: req.params.id},
-            attributes: ['id', 'title', 'contents', 'date_created'],
-        });
+// //GET post to edit
+// router.get('/edit/:id', withAuth, async (req, res) => {
+//     console.log("************************************")
+//     console.log("ROUTE HIT TO EDIT POST")
+//     try {
+//         const postData = await Post.findByPk(req.params.id, {
+//             attributes: ['id', 'title', 'contents', 'date_created'],
+//             include: [
+//                 {
+//                   model: User,
+//                   attributes: ['username'],
+//                 },
+//                 {
+//                   model: Comment,
+//                   include: {
+//                     model: User
+//                 }}
+//               ],
+//         });
 
-        const post = postData.get({ plain: true });
-        res.render('edit-post', {post, loggedIn: true});
+//         if (!postData) {
+//             res.status(404).json({ message: 'Cannot find post' });
+//         }
 
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+//         const post = postData.get({ plain: true });
+//         res.render('edit-post', {
+//             post, 
+//             loggedIn: req.session.loggedIn
+//         });
+
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 
 router.get('/post/create', withAuth, async (req, res) => {
     try {
@@ -81,4 +100,3 @@ router.get('/post/create', withAuth, async (req, res) => {
 
 module.exports = router;
 
-//dashboard needs get routes for all blog posts user created

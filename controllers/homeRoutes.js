@@ -63,6 +63,41 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
+//GET post to edit
+router.get('/edit/:id', withAuth, async (req, res) => {
+  console.log("************************************")
+  console.log("ROUTE HIT TO EDIT POST")
+  try {
+      const postData = await Post.findByPk(req.params.id, {
+          attributes: ['id', 'title', 'contents', 'date_created'],
+          include: [
+              {
+                model: User,
+                attributes: ['username'],
+              },
+              {
+                model: Comment,
+                include: {
+                  model: User
+              }}
+            ],
+      });
+
+      if (!postData) {
+          res.status(404).json({ message: 'Cannot find post' });
+      }
+
+      const post = postData.get({ plain: true });
+      res.render('edit-post', {
+          post, 
+          loggedIn: req.session.loggedIn
+      });
+
+  } catch (err) {
+      res.status(500).json(err);
+  }
+});
+
 // GET single comment
 router.get('/comment/:id', async (req, res) => {
   try {
@@ -97,7 +132,7 @@ router.get('/comment/:id', async (req, res) => {
 });
 
 // Edit comment route
-router.get('/edit-comment/:id', async (req, res) => {
+router.get('/edit-comment/:id', withAuth, async (req, res) => {
   try {
     const commentData = await Comment.findByPk(req.params.id, {
       attributes: ['id', 'contents', 'date_created', 'post_id', 'user_id'],
