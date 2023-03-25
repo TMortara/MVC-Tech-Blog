@@ -1,8 +1,8 @@
+  <h2 id="page-title">My Posts</h2>
 <div>
-  <h2>My Posts</h2>
   {{#if posts.length}}
     {{#each posts as |post|}}
-      <div class="card w-75 mb-3">
+      <div class="card w-75 mb-3 mx-auto">
         <div class="card-body">
           <h5><a href="/post/{{post.id}}">{{post.title}}</a></h5>
           <p class="card-text">{{post.contents}}</p>
@@ -10,10 +10,11 @@
       </div>
     {{/each}}
   {{else}}
-    <h3>You do not have any posts at this time.</h3>
+    <h3 id="page-title">You do not have any posts at this time.</h3>
   {{/if}}
-  <form class="form post-form">
-    <div class="form-group">
+  <h2 id="page-title">Add a New Post</h2>
+  <form class="form post-form w-75 col-md-12 mx-auto">
+    <div class="form-group ">
       <label for="title">Post Title:</label>
       <input class="form-input" type="text" id="title" />
     </div>
@@ -21,10 +22,9 @@
       <label for="contents">Post Content:</label>
       <input class="form-input" type="textarea" id="contents" />
     </div>
-    <div class="form-group">
+    <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary" type="submit">Add Post</button>
     </div>
   </form>
   <script src="/js/dashboardAddPost.js"></script>
 </div>
-{{!-- {{> post-form}} --}}
