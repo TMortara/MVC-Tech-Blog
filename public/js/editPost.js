@@ -5,8 +5,11 @@ const editPostFormHandler = async (event) => {
     // const id = event.target.getAttribute('data-id');
     const postId = document.querySelector('#post-id').getAttribute('value');
 
-    const title = document.querySelector('#updated-title').value.trim();
-    const contents = document.querySelector('#updated-contents').value.trim();
+    const title = document.querySelector('input[name="updated-post-title"]').value.trim();
+    const contents = document.querySelector('input[name="updated-post-contents"]').value.trim();
+
+    // const title = document.querySelector('#updated-title').value.trim();
+    // const contents = document.querySelector('#updated-contents').value.trim();
     console.log(contents);
     // const contents = document.querySelector('#updated_contents').value;
     //   console.log(contents);
