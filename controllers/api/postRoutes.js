@@ -21,13 +21,15 @@ router.post('/', withAuth, async (req, res) => {
 
 //PUT route to update post
 router.put('/:id', withAuth, async (req, res) => {
+    console.log("************************************")
+        console.log("POST PUT ROUTE HIT")
     try {
-        const post = await Post.update(
-            {
-                title: req.body.title,
-                contents: req.body.contents,
-                date_created: req.body.date_created,
-            },
+        const post = await Post.update(req.body,
+            // {
+            //     title: req.body.title,
+            //     contents: req.body.contents,
+            //     date_created: req.body.date_created,
+            // },
             {
                 where: {
                     id: req.params.id
