@@ -51,6 +51,8 @@ router.put('/:id', withAuth, async (req, res) => {
 
 //DELETE route to delete selected post
 router.delete('/:id', withAuth, async (req, res) => {
+    console.log("************************************")
+    console.log("POST DELETE ROUTE HIT")
     try {
         const postData = await Post.destroy({
             where: {
