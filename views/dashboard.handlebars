@@ -1,16 +1,16 @@
-  <h2 id="page-title">My Posts</h2>
+<h2 id="page-title">My Posts</h2>
 <div>
   {{#if posts.length}}
-    {{#each posts as |post|}}
-      <div class="card w-75 mb-3 mx-auto border-0">
-        <div class="card-body">
-          <h5 id="post-title"><a href="/post/{{post.id}}">{{post.title}}</a></h5>
-          <p class="card-text">{{post.contents}}</p>
-        </div>
-      </div>
-    {{/each}}
+  {{#each posts as |post|}}
+  <div class="card w-75 mb-3 mx-auto border-0">
+    <div class="card-body">
+      <h5 id="post-title"><a href="/post/{{post.id}}">{{post.title}}</a></h5>
+      <p class="card-text">{{post.contents}}</p>
+    </div>
+  </div>
+  {{/each}}
   {{else}}
-    <h3 id="page-contents">You do not have any posts at this time.</h3>
+  <h3 id="page-contents">You do not have any posts at this time.</h3>
   {{/if}}
   <h2 id="page-title">Add a New Post</h2>
   <form class="form post-form w-75 col-md-12 mx-auto">
