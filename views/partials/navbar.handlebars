@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
+  <div id="nav" class="container-fluid">
     <span id="blog-title" class="navbar-brand">
       MVC Tech Blog
     </span>
@@ -13,10 +13,10 @@
  
     {{#if loggedIn}}
     <li class="nav-item">
-      <button id="logout">Logout</button></li>
+      <button id="logout" class="btn btn-primary" id="logout">Logout</button></li>
     {{else}}
     <li class="nav-item">
-      <a href="/login">Login</a></li>
+      <a id="login" class="btn btn-primary" href="/login">Login</a></li>
     {{/if}}
      </ul>
     </div>

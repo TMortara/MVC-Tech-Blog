@@ -1,23 +1,15 @@
-<div class="comments">
-  <br>
+<div class="card w-75 mb-3 mx-auto border-0">
+  <h5 id="page-comment-title">Comments</h5>
   {{#each this}}
+  <div class="comments card-body">
     <section id="comment-section" class="comment">
       {{log comment.id}}
       <a href="/edit-comment/{{id}}">{{contents}}</a>
-      <div class="meta">
+      <div id="comment-metadata" class="meta">
         {{user.username}} -  {{format_date date_created}}
       </div>
-      {{!-- <p class="text">
-        {{contents}}
-      </p> --}}
     </section>
-     {{!-- {{#if loggedIn}} --}}
-     {{!-- {{log contents}} --}}
- 
-    {{!-- {{/if}} --}}
+    </div>
   {{/each}}
 </div>
-
-{{!-- {{#if loggedIn}} --}}
-{{!-- <script src="/js/comment.js"></script> --}}
-{{!-- {{/if}} --}}
+</div>

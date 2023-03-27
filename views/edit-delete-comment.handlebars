@@ -1,30 +1,27 @@
-<div>
-    <p>{{comment.contents}}</p>
-    <p>Created by: {{comment.user.username}} on {{format_date comment.date_created}}</p>
-</div>
+    <h2 id="page-title">
+    Current Comment
+  </h2>
+
+
+    <p class="single-comment">{{comment.contents}}</p>
+    {{!-- <p>Created by: {{comment.user.username}} on {{format_date comment.date_created}}</p> --}}
+
     <div id="post-id" value="{{comment.post_id}}" hidden></div>
-
-
-<div class="delete-comment">
-    <button id="delete-btn" class="delete-comment-btn" data-id="{{comment.id}}">Delete Comment</button>
-</div>
+        <h3 id="page-sub-title">Edit Comment</h3>
 
 <div class="edit-comment">
-  <h2>
-    Edit Comment
-  </h2>
-    <label for="comment">
-      Updated Comment:
+    <label id="comment-label" for="comment">
+      Would you like to Update your Comment?
     </label>
-    <br />
-    <textarea id="updated_contents" name="contents" rows="4">
+    <textarea id="updated_contents" name="contents" rows="4" cols="64">
       {{!-- {{comment.contents}} --}}
     </textarea>
-  <div class="edit-comment">
-    <button id="edit-btn" class="edit-comment-btn" data-id="{{comment.id}}">Edit Comment</button>
-  </div>
+    <br>
 </div>
-
+  <div id="comment-btns" class="form-group">
+    <button id="edit-btn" class="edit-comment-btn btn btn-primary" data-id="{{comment.id}}">Edit Comment</button>
+     <button id="delete-btn" class="delete-comment-btn btn btn-primary" data-id="{{comment.id}}">Delete Comment</button>
+  </div>
 {{#if loggedIn}}
 <script src="/js/deleteComment.js"></script>
 <script src="/js/editComment.js"></script>

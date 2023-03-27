@@ -24,5 +24,5 @@ const editFormHandler = async (event) => {
   }
 };
 
-console.log(document.querySelector(".edit-comment"))
+// console.log(document.querySelector(".edit-comment"))
 document.querySelector('#edit-btn').addEventListener('click', editFormHandler);
