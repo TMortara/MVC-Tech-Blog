@@ -48,10 +48,13 @@ The application can be run locally or through the deployed link.  If you run the
 ## File Structure
 The directory for this application is as follows:
 - /config: configuration file for database
+- /routes: routes for different requests in our application
 - /db: database schema
-- /models: 
-- /routes: 
-- /seeds: 
+- /models: Sequelize models used to create tables in database
+- /public: includes the public css and javascript files
+- /seeds: seed information for our database
+- /utils: utility helper files
+- /views: handlebars files for our html
 
 ## Built With:
 [![Built With](https://skillicons.dev/icons?i=vscode,js,css,nodejs,bootstrap,express,heroku,mysql,sequelize&theme=dark)](https://skillicons.dev)
@@ -62,6 +65,8 @@ The directory for this application is as follows:
  - bcrypt
 
 ## Resources Used to Complete Project
+ - [Handlebars Documentation](https://handlebarsjs.com/)
+
 ### Sequelize Documentation
  - [Model Querying Basics](https://sequelize.org/docs/v6/core-concepts/model-querying-basics/)
  - [Sub Queries](https://sequelize.org/docs/v7/core-concepts/validations-and-constraints/#note-about-allownull-implementation)
@@ -73,6 +78,26 @@ The directory for this application is as follows:
 
 ## Screenshots
 
-## Credits
+### Home Screen
+<img width="800" alt="Screen Shot 2023-03-27 at 8 36 44 PM" src="https://user-images.githubusercontent.com/107971753/228104372-05a0b8c3-b81e-4548-9159-71677636f78d.png">
 
+### Dashboard - Dashboard will show all posts for the user
+<img width="800" alt="Screen Shot 2023-03-27 at 8 25 13 PM" src="https://user-images.githubusercontent.com/107971753/228103055-9ab23990-71aa-4637-9386-c45f815e61b3.png">
+
+### Login and Register
+<img width="800" alt="Screen Shot 2023-03-27 at 8 34 56 PM" src="https://user-images.githubusercontent.com/107971753/228104117-db16445f-5ccd-410f-92e1-32f3c020c14a.png">
+
+<img width="800" alt="Screen Shot 2023-03-27 at 8 35 11 PM" src="https://user-images.githubusercontent.com/107971753/228104135-a27127b7-6e43-4990-9c81-6ecea6e4cd95.png">
+
+### Single Post - From this page you can add a comment, delete a post, or navigate to the edit post view.
+<img width="800" alt="Screen Shot 2023-03-27 at 8 22 01 PM" src="https://user-images.githubusercontent.com/107971753/228102365-fd47edec-1ece-435d-ae12-a57993b5b7c1.png">
+
+#### Update Post
+<img width="800" alt="Screen Shot 2023-03-27 at 8 23 39 PM" src="https://user-images.githubusercontent.com/107971753/228102944-fd20ecd9-1205-4368-af39-4450b8b17fe4.png">
+
+### Update or Delete Comment
+<img width="800" alt="Screen Shot 2023-03-27 at 8 24 10 PM" src="https://user-images.githubusercontent.com/107971753/228102991-9e1f4ec0-7b8f-43df-a842-a29c313ba3b8.png">
+
+## Credits
+Thank you to Jason Vissage, my T.A., Torre Taylor, our instructor, and Alexis Gonzales, my tutor to help me understand routes and assist with routing issues.
 
